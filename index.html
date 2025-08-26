@@ -219,28 +219,7 @@
   }
 
   /* Mobile: show button and turn nav into a panel */
-  @media (max-width: 980px){
-    .hamburger{ display: grid; }
 
-    /* hide the inline nav by default on small screens */
-    .nav{
-      position: fixed; top: calc(var(--nav-h) + 8px); left: 12px; right: 12px;
-      display: none; flex-direction: column; gap: 0;
-      background: rgba(255,255,255,.98);
-      border: 1px solid var(--hairline); border-radius: 14px;
-      box-shadow: var(--elev); padding: 8px;
-      max-height: calc(100vh - var(--nav-h) - 24px);
-      overflow: auto; z-index: 998;
-    }
-    /* show when toggled */
-    #nav-toggle:checked ~ .nav{ display: flex; }
-
-    /* large, tappable links */
-    .nav a{
-      display:block; padding: 14px 12px; margin: 2px 0; border-radius: 10px; color: var(--ink);
-    }
-    .nav a:hover{ background: rgba(11,15,20,.05) }
-  }
     
     /* === Smaller hamburger icon (keep 42×42 button for accessibility) === */
     .hamburger{ width: 42px; height: 42px; }            /* keep the hit area */
