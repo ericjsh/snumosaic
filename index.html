@@ -1,0 +1,473 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="MOSAIC Research Group — Active galactic nuclei, galaxy co‑evolution, time‑domain surveys, and open pipelines.">
+  <meta name="theme-color" content="#0a84ff">
+  <meta property="og:title" content="MOSAIC — Home">
+  <meta property="og:description" content="Research on AGNs, galaxies, reverberation mapping, outflows, and cosmology at Seoul National University.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1450849608880-6f787542c88a?q=80&w=1200&auto=format&fit=crop">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico"> 
+  <title>SNU MOSAIC — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* =====================================================
+       SNU AGN & Galaxy — Apple-Style Landing (CodePen-ready)
+       Minimal, premium, spacious. Black/White with blue accent.
+       Single file (HTML + CSS) — no JS required.
+       ===================================================== */
+
+    /* ------------------ Tokens ------------------ */
+    :root{
+      /* Color system */
+      --bg: #ffffff;           /* page background */
+      --ink: #0b0f14;          /* primary text on light */
+      --ink-weak: #697582;     /* secondary text on light */
+      --bg-inv: #0b0f14;       /* inverted background (dark sections) */
+      --ink-inv: #f2f5f8;      /* text on dark */
+      --ink-inv-weak: #c8d0da; /* secondary on dark */
+      --blue: #0a84ff;         /* key accent (Apple-ish blue) */
+      --blue-ink: #0056b8;     /* pressed/active ink */
+      --hairline: rgba(11,15,20,.12);
+      --hairline-strong: rgba(11,15,20,.18);
+
+      /* Type & spacing */
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      --measure: 68ch;           /* ideal reading width */
+      --step--1: 14px;           /* small */
+      --step-0: 17px;            /* base */
+      --step-1: clamp(20px, 2.2vw, 22px);
+      --step-2: clamp(26px, 3.6vw, 32px);
+      --step-3: clamp(34px, 5.2vw, 44px);
+      --step-4: clamp(44px, 7.2vw, 64px);
+
+      /* Rhythm */
+      --space-1: 8px;
+      --space-2: 12px;
+      --space-3: 18px;
+      --space-4: 28px;
+      --space-5: 44px;
+      --space-6: 72px;
+      --space-7: 110px; /* section block */
+
+      /* Surfaces */
+      --card: #f6f8fb;   /* subtle light tile */
+      --card-inv: #0f141a; /* subtle dark tile */
+
+      /* Shadows — extremely restrained */
+      --elev: 0 6px 24px rgba(0,0,0,.08);
+
+      /* Radii */
+      --r-lg: 20px; --r-md: 14px; --r-sm: 10px;
+      
+    }
+
+    /* ------------------ Base ------------------ */
+    *{ box-sizing: border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; background: var(--bg); color: var(--ink);
+      font-family: var(--font); font-size: var(--step-0); line-height: 1.75;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    img{ max-width:100%; display:block }
+    a{ color: var(--blue); text-decoration: none }
+    a:hover{ color: var(--blue-ink) }
+
+    /* Layout */
+    .container{ width: min(1140px, 92vw); margin-inline: auto }
+    .wide{ width: min(1400px, 94vw); margin-inline:auto }
+    .center{ text-align:center }
+
+    /* ------------------ Header / Nav ------------------ */
+    .site-header{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: saturate(1.1) blur(10px);
+      background: rgba(255,255,255,.75);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap: 16px; padding: 12px 0 }
+    .brand{ display:flex; align-items:center; gap:10px; color: var(--ink); font-weight: 800 }
+    .brand-mark{ width:28px; height:28px; border-radius:8px; background: var(--ink); display:grid; place-items:center; color:#fff; font-size: 14px; letter-spacing:.5px }
+    .brand-text{ letter-spacing:.2px }
+
+    .nav{ display:flex; align-items:center; gap: 18px }
+    .nav a{ color: var(--ink); opacity:.9; padding: 8px 10px; border-radius: 10px }
+    .nav a:hover{ background: rgba(11,15,20,.05) }
+
+    /* ------------------ Hero ------------------ */
+    .hero{ padding: var(--space-7) 0 var(--space-6); border-bottom: 1px solid var(--hairline) }
+    .hero h1{ font-size: var(--step-4); line-height:1.06; letter-spacing: .1px; margin: 0 0 var(--space-3) }
+    .hero p.lead{ font-size: var(--step-1); color: var(--ink-weak); max-width: var(--measure); margin: 0 auto var(--space-4) }
+    .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
+
+    .btn{ display:inline-block; padding: 12px 20px; border-radius: 999px; font-weight:700; border:1px solid var(--hairline-strong) }
+    .btn-primary{ background: var(--blue); color:white; border-color: rgba(10,132,255,.2) }
+    .btn-primary:hover{ filter: brightness(1.05) }
+    .btn-ghost{ background: #fff; color: var(--ink) }
+
+    /* ------------------ TILES (Apple-style modules) ------------------ */
+    .tiles{ display:grid; grid-template-columns: 1fr; gap: var(--space-6); margin-top: var(--space-6) }
+
+    /* Generic tile */
+    .tile{ border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow:hidden; background: #fff }
+    .tile.dark{ background: var(--bg-inv); color: var(--ink-inv); border-color: rgba(255,255,255,.08) }
+
+    .tile-wrap{ display:grid; grid-template-columns: 1.15fr .85fr; gap: 0 }
+    .tile.dark .eyebrow{ color: var(--ink-inv-weak) }
+
+    .tile-copy{ padding: clamp(28px, 4.5vw, 56px) }
+    .eyebrow{ font-size: var(--step--1); text-transform: uppercase; letter-spacing: .18em; color: var(--ink-weak) }
+    .tile h2{ font-size: var(--step-3); line-height: 1.12; margin: 10px 0 12px }
+    .tile p{ color: var(--ink-weak); margin: 0 0 18px }
+    .tile.dark p{ color: var(--ink-inv-weak) }
+    .link-row{ display:flex; gap: 16px; flex-wrap:wrap }
+    .link{ font-weight: 700 }
+
+    .tile-visual{ min-height: 450px; background-size: cover; background-position: center; }
+    .tile-visual.is-white{ background-color: #f4f7fa }
+
+    /* Two-up tiles (Research/Projects) */
+    .two-up{ display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-6) }
+
+    /* Cards inside dark tile */
+    .pill{
+      display:inline-block; padding: 6px 12px; border-radius:999px; border:1px solid var(--hairline); color: var(--ink); background:#fff; font-weight:700; font-size: var(--step--1);
+    }
+    .pill.inv{ background: transparent; color: var(--ink-inv); border-color: rgba(255,255,255,.22) }
+
+    /* Lists */
+    .list{ margin: 0; padding-left: 18px }
+    .list li{ margin: 8px 0 }
+
+    /* Recent pubs (simple table-ish) */
+    .pubs{ display:grid; grid-template-columns: 1fr; gap: 12px; margin-top: 14px }
+    .pub{ padding: 5px 0; border-top:1px solid var(--hairline) }
+    .pub:first-child{ border-top:0 }
+    .pub strong{ color: var(--ink) }
+    .tile.dark .pub strong{ color: var(--ink-inv) }
+
+    /* ------------------ Footer ------------------ */
+    .site-footer{ margin-top: var(--space-6); border-top:1px solid var(--hairline) }
+    .footer-inner{ padding: 22px 0; display:flex; align-items:center; justify-content:space-between; color: var(--ink-weak) }
+
+    /* ------------------ Responsive ------------------ */
+    @media (max-width: 1100px){ .tile-wrap{ grid-template-columns: 1fr } }
+    @media (max-width: 860px){ .two-up{ grid-template-columns: 1fr } }
+    /* Accessibility & motion */
+    html{ scroll-behavior: smooth }
+    .skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
+    .skip-link:focus{ left:12px; top:12px; width:auto; height:auto; padding:10px 14px; background:#000; color:#fff; border-radius:8px; z-index:100 }
+    
+      /* ===== Always-on fixed navigation (drop-in override) ===== */
+    :root { --nav-h: 64px; }           /* tweak for a taller/shorter bar */
+
+    .site-header{
+      position: fixed;                  /* instead of sticky */
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      backdrop-filter: saturate(1.1) blur(10px);
+      background: rgba(255,255,255,.85);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .nav-inner{
+      height: var(--nav-h);             /* lock the bar height */
+      padding: 0;                       /* vertical spacing now comes from height */
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+
+    body{ padding-top: var(--nav-h); }  /* push content below the fixed bar */
+
+    /* prevent in-page anchors (e.g., #about, #research) from hiding under the bar */
+    section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
+  /* ===== Always-on fixed navigation ===== */
+  :root { --nav-h: 64px; } /* adjust if you want a taller/shrinker bar */
+
+  .site-header{
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    backdrop-filter: saturate(1.1) blur(10px);
+    background: rgba(255,255,255,.85);
+    border-bottom: 1px solid var(--hairline);
+    box-shadow: 0 6px 18px rgba(0,0,0,.06); /* subtle under-shadow */
+  }
+  .nav-inner{ height: var(--nav-h); padding: 0; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  body{ padding-top: var(--nav-h); } /* keep content from hiding under the fixed bar */
+  section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); } /* anchors not hidden */
+
+  /* ===== Mobile hamburger menu (CSS-only) ===== */
+  .nav-toggle{ position: absolute; left: -9999px; } /* hide checkbox */
+
+  .hamburger{
+    display: none; width: 42px; height: 42px; border-radius: 10px;
+    border: 1px solid var(--hairline); background: rgba(255,255,255,.8);
+    backdrop-filter: blur(8px); cursor: pointer; place-content: center; place-items: center;
+  }
+  .hamburger span{
+    display:block; width:22px; height:2px; background: var(--ink);
+    margin:5px auto; transition: .25s ease;
+  }
+  /* morph to “X” when open */
+  #nav-toggle:checked + .hamburger span:nth-child(1){ transform: translateY(7px) rotate(45deg) }
+  #nav-toggle:checked + .hamburger span:nth-child(2){ opacity: 0 }
+  #nav-toggle:checked + .hamburger span:nth-child(3){ transform: translateY(-7px) rotate(-45deg) }
+
+  /* Desktop: keep inline nav */
+  @media (min-width: 861px){
+    .hamburger, .nav-toggle{ display: none; }
+  }
+
+  /* Mobile: show button and turn nav into a panel */
+  @media (max-width: 860px){
+    .hamburger{ display: grid; }
+
+    /* hide the inline nav by default on small screens */
+    .nav{
+      position: fixed; top: calc(var(--nav-h) + 8px); left: 12px; right: 12px;
+      display: none; flex-direction: column; gap: 0;
+      background: rgba(255,255,255,.98);
+      border: 1px solid var(--hairline); border-radius: 14px;
+      box-shadow: var(--elev); padding: 8px;
+      max-height: calc(100vh - var(--nav-h) - 24px);
+      overflow: auto; z-index: 998;
+    }
+    /* show when toggled */
+    #nav-toggle:checked ~ .nav{ display: flex; }
+
+    /* large, tappable links */
+    .nav a{
+      display:block; padding: 14px 12px; margin: 2px 0; border-radius: 10px; color: var(--ink);
+    }
+    .nav a:hover{ background: rgba(11,15,20,.05) }
+  }
+    
+    /* === Smaller hamburger icon (keep 42×42 button for accessibility) === */
+    .hamburger{ width: 42px; height: 42px; }            /* keep the hit area */
+    .hamburger span{
+      width: 16px;      /* was 22px */
+      height: 2px;      /* same thickness */
+      margin: 0px auto; /* was 5px */
+      transform-origin: center; 
+    }
+
+    /* Tighter transforms for the smaller bars */
+    #nav-toggle:checked + .hamburger span:nth-child(1){
+      transform: translateY(6px) rotate(45deg);         /* was 7px */
+    }
+    #nav-toggle:checked + .hamburger span:nth-child(2){
+      opacity: 0;
+    }
+    #nav-toggle:checked + .hamburger span:nth-child(3){
+      transform: translateY(-6px) rotate(-45deg);       /* was -7px */
+    }
+
+        /* === Fix: hamburger/X clipped on mobile (smaller, perfectly centered) === */
+    :root{
+      --ham-btn: 40px;   /* button hit area (keep comfy) */
+      --ham-w: 16px;     /* bar length  (icon size) */
+      --ham-h: 2px;      /* bar thickness */
+      --ham-gap: 6px;    /* distance of top/bottom bars from center */
+    }
+
+    /* ensure nothing clips the icon */
+    .site-header, .nav-inner { overflow: visible; }
+
+    .hamburger{
+      width: var(--ham-btn); height: var(--ham-btn);
+      position: relative; line-height: 0; /* avoid text metrics */
+      /* your existing border/background styles remain */
+    }
+
+    /* bars are absolutely centered; no cropping when rotated */
+    .hamburger span{
+      position: absolute; left: 50%; top: 50%;
+      display: block; width: var(--ham-w); height: var(--ham-h);
+      background: var(--ink); border-radius: 1px;
+      transition: transform .22s ease, opacity .18s ease;
+      transform: translate(-50%, calc(-50% - var(--ham-gap)));
+    }
+    .hamburger span:nth-child(2){ transform: translate(-50%, -50%); }
+    .hamburger span:nth-child(3){ transform: translate(-50%, calc(-50% + var(--ham-gap))); }
+
+    /* morph to X, still centered inside the button */
+    #nav-toggle:checked + .hamburger span:nth-child(1){ transform: translate(-50%, -50%) rotate(45deg); }
+    #nav-toggle:checked + .hamburger span:nth-child(2){ opacity: 0; }
+    #nav-toggle:checked + .hamburger span:nth-child(3){ transform: translate(-50%, -50%) rotate(-45deg); }
+
+    @media (max-width: 860px){
+      .hamburger{ display:grid; place-content:center; }
+      .nav{ position: fixed; top: calc(var(--nav-h) + 8px); left:12px; right:12px; display:none; flex-direction:column; gap:0; background: rgba(255,255,255,.98); border:1px solid var(--hairline); border-radius:14px; box-shadow: var(--elev); padding:8px; max-height: calc(100vh - var(--nav-h) - 24px); overflow:auto; z-index:998; }
+      #nav-toggle:checked ~ .nav{ display:flex }
+      .nav a{ display:block; padding:14px 12px; margin:2px 0 }
+    }
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- ====================== NAV ====================== -->
+<!-- ====================== NAV ====================== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="#main" aria-label="Go to home">
+        <span class="brand-mark">M</span>
+        <span class="brand-text">SNU MOSAIC</span>
+      </a>
+
+      <!-- NEW: mobile menu toggle + button (must come before <nav>) -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <!-- Add id so the small script can find these links -->
+      <nav id="primary-nav" class="nav" aria-label="Primary">
+        <a href="research.html">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="people.html">People</a>
+        <a href="publications.html">Publications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="main">
+    <!-- ====================== HERO ====================== -->
+    <section class="hero center container">
+      <h1>SNU MOSAIC</h1>
+      <p class="lead">Seoul National University Morphology of SMBH (Super Massive Black Holes) and AGNs (Active Galactic Nuclei) Investigation Center.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="research.html">Explore Research</a>
+        <a class="btn btn-ghost" href="publications.html">View Publications</a>
+      </div>
+    </section>
+
+    <div class="wide tiles">
+
+
+      <!-- ========== TILE: About us (dark) ========== -->
+      <section id="research" class="tile dark">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">About SNU MOSAIC</span>
+            <h2>From Lags to Laws.</h2>
+            <p>We measure lags, dynamics, and scaling relations to connect SMBHs with their galaxies and the expanding Universe. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque laboriosam fugiat sint voluptate, in neque magni eligendi veniam non iusto assumenda, commodi optio dolorum, facilis eius consequatur temporibus. Vitae, unde.</p>
+          </div>
+          <div class="tile-visual" style="background-image:url('https://images.unsplash.com/photo-1450849608880-6f787542c88a?q=80&w=1600&auto=format&fit=crop');"></div>
+        </div>
+      </section>
+
+      <!-- ========== TILE: Research (dark) ========== -->
+      <section id="research" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Research</span>
+            <h2>From the Center to Entire Galaxy.</h2>
+            <div class="link-row">
+              <span class="pill">M–σ Relation</span>
+              <span class="pill">AGN Cosmology</span>
+              <span class="pill">AGN Outflows</span>
+              <span class="pill">Reverberation Mapping</span>
+              <span class="pill">Accretion Disks</span>
+            </div>
+            &nbsp;
+            <p>We measure lags, dynamics, and scaling relations to connect SMBHs with their galaxies and the expanding Universe.</p>
+            <div class="link-row">
+              <a class="link" href="research.html">On-going research →</a>
+            </div>
+          </div>
+          <div class="tile-visual" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/f/fb/Black_Hole_Full.png');"></div>
+        </div>
+      </section>
+
+      <!-- ========== TILES: Projects (two-up) ========== -->
+      <section id="projects" class="two-up">
+        <div class="tile">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow">Projects</span>
+              <h2>KAMP</h2>
+              <p>KMTNet AGN Monitoring Project: long‑baseline optical monitoring for reverberation mapping and disk tomography.</p>
+              <div class="link-row">
+                <a class="link" href="projects.html#kamp">Learn more →</a>
+              </div>
+            </div>
+            <div class="tile-visual is-white" style="background-image:url('https://kmtnet.kasi.re.kr/origin-photo/kmtnet-saao-08.jpg');"></div>
+          </div>
+        </div>
+        <div class="tile dark">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow">Projects</span>
+              <h2>SPHEREx & 7DT</h2>
+              <p>All‑sky spectra meet rapid cadence: dust/BLR lags, SEDs, and population studies with consistent pipelines.</p>
+                <a class="link" href="projects.html#spherex">Learn more →</a>
+            </div>
+            <div class="tile-visual" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop');"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== TILE: People (light) ========== -->
+      <section id="people" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">People</span>
+            <h2>Professor, Post‑docs, Students, Interns.</h2>
+            <p>We’re an open, collaborative team. Replace this copy with short intros and headshots for each member.</p>
+            <div class="link-row">
+              <a class="link" href="people.html">Meet the group →</a>
+            </div>
+          </div>
+          <div class="tile-visual is-white" style="background-image:url('https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1600&auto=format&fit=crop');"></div>
+        </div>
+      </section>
+
+      <!-- ========== TILE: Publications (dark, with list) ========== -->
+      <section id="publications" class="tile dark">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Publications</span>
+            <h2>Recent Papers</h2>
+            <div class="pubs">
+              <!-- Replace with real items (up to 4) -->
+              <div class="pub"><strong>Mandal et al. (2025)</strong> — The Size of the Continuum Emission Region and Its Scaling Relations with Active Galactic Nucleus Luminosity and the Broad-line Region Size.</div>
+              <div class="pub"><strong>Wang et al. (2025)</strong> — Seoul National University AGN Monitoring Project. V. Velocity-resolved Hβ Reverberation Mapping and Evidence of Kinematics Evolution.</div>
+              <div class="pub"><strong>Wang et al. (2025)</strong> — Dormancy and Reawakening over Years: Eight New Recurrent Changing-look AGNs.</div>
+              <div class="pub"><strong>Ayubinia et al. (2025)</strong> — Prediction of Star Formation Rates Using an Artificial Neural Network.</div>
+            </div>
+            <div class="link-row" style="margin-top:14px"><a class="link" href="publications.html">All publications →</a></div>
+          </div>
+          <div class="tile-visual" style="background-image:url('https://t3.ftcdn.net/jpg/13/50/69/90/360_F_1350699020_5TPWFnwTaiu6OkKS6phO3yunwTlsHi4C.jpg');"></div>
+        </div>
+      </section>
+
+      <!-- ========== TILE: Contact (light, simple) ========== -->
+      <section id="contact" class="tile">
+        <div class="tile-wrap">
+          <div class="tile-copy">
+            <span class="eyebrow">Contact</span>
+            <h2>Let’s talk.</h2>
+            <p>Email us with questions about collaboration, data, or advising. We are always open to new opportunities.</p>
+            <div class="link-row">
+              <p>Professor Jong-Hak Woo</p><a class="link" href="mailto:jhwoo@snu.ac.kr">jhwoo@snu.ac.kr</a>
+            </div>
+            <p>Seoul National University, Seoul, 08826, Republic of Korea, Building 19, Room 205</p>
+          </div>
+          <div class="tile-visual is-white" style="background-image:url('https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1600&auto=format&fit=crop');"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© 2025 SNU MOSAIC</span>
+      <span><a href="#main">Back to top</a></span>
+    </div>
+  </footer>
+</body>
+</html>
