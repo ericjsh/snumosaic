@@ -153,8 +153,8 @@
     .footer-inner{ padding: 22px 0; display:flex; align-items:center; justify-content:space-between; color: var(--ink-weak) }
 
     /* ------------------ Responsive ------------------ */
-    @media (max-width: 860px){ .tile-wrap{ grid-template-columns: 1fr } }
-    @media (max-width: 860px){ .two-up{ grid-template-columns: 1fr } }
+    @media (max-width: 980px){ .tile-wrap{ grid-template-columns: 1fr } }
+    @media (max-width: 980px){ .two-up{ grid-template-columns: 1fr } }
     /* Accessibility & motion */
     html{ scroll-behavior: smooth }
     .skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
@@ -214,12 +214,12 @@
   #nav-toggle:checked + .hamburger span:nth-child(3){ transform: translateY(-7px) rotate(-45deg) }
 
   /* Desktop: keep inline nav */
-  @media (min-width: 861px){
+  @media (min-width: 981px){
     .hamburger, .nav-toggle{ display: none; }
   }
 
   /* Mobile: show button and turn nav into a panel */
-  @media (max-width: 860px){
+  @media (max-width: 980px){
     .hamburger{ display: grid; }
 
     /* hide the inline nav by default on small screens */
