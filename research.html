@@ -118,7 +118,7 @@
 
     /* ------------------ Tiles (same pattern as home) ------------------ */
     .tiles{ display:grid; grid-template-columns: 1fr; gap: var(--space-6); margin: var(--space-5) 0 }
-    .tile{ border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow:hidden; background: #fff }
+    .tile{ border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow:hidden; background: #fff ; box-shadow: 0 6px 24px rgba(0,0,0,.08);}
     .tile.dark{ background: var(--bg-inv); color: var(--ink-inv); border-color: rgba(255,255,255,.08) }
     .tile-wrap{ display:grid; grid-template-columns: 1.15fr .85fr; gap:0 }
     @media (max-width: 1100px){ .tile-wrap{ grid-template-columns: 1fr } }
@@ -244,7 +244,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>Research</h1>
-        <p>Our group investigates the physics of active galactic nuclei and their host galaxies through time-domain analyses, spectroscopy, and robust inference. Below are our focus areas.</p>
+        <p>Our group investigates the physics of active galactic nuclei (white panel) and their host galaxies (black panel) through time-domain analyses, spectroscopy, and robust inference. Below are our focus areas.</p>
       </div>
     </section>
 
@@ -252,24 +252,24 @@
     <div class="container research-layout">
       <aside class="toc" aria-label="Topics">
         <h3>Topics</h3>
-        <a href="#morphology">Galaxy morphology</a>
-        <a href="#msigma">M–σ relation</a>
-        <a href="#outflows">AGN outflows</a>
-        <a href="#redshift">AGN redshift</a>
-        <a href="#blr">AGN BLR</a>
-        <a href="#disk">Accretion disk</a>
-        <a href="#clagn">Changing-look AGN</a>
-        <a href="#cosmology">AGN Cosmology</a>
+        <a href="#accretion-disk">Accretion Disks</a>
+        <a href="#feedback">AGN Feedback</a>
+        <a href="#blr">Broad Line Region</a>
+        <a href="#clagn">Changing-Look AGN</a>
+        <a href="#cosmology">Cosmology</a>
+        <a href="#dust-torus">Dust Torus</a>
+        <a href="#msig-relation">M–σ relation</a>
         <small>Tap a topic to jump.</small>
       </aside>
 
       <div class="wide tiles">
-        <!-- Galaxy Morphology -->
-        <section id="morphology" class="tile">
+
+        <!-- AGN: Accretion Disks -->
+        <section id="accretion-disk" class="tile">
           <div class="tile-wrap">
             <div class="tile-copy">
-              <span class="eyebrow">Galaxy Morphology</span>
-              <h2>Structure of Host Galaxies</h2>
+              <span class="eyebrow">Active Galactic Nuclei</span>
+              <h2>Accretion Disks</h2>
               <p>Quantifying bulges, disks, bars, and tidal features to connect host structure with black-hole growth and AGN triggering.</p>
               <ul class="bullets">
                 <li>2D image decomposition (e.g., bulge–disk, bar).</li>
@@ -281,16 +281,57 @@
                 <span class="pill">Machine Vision</span>
               </div>
             </div>
-            <div class="tile-visual is-white" style="background-image:url('spiral_galaxy_ngc_3982.webp')"></div>
+            <div class="tile-visual is-white" style="background-image:url('agn_accretion_disk.jpg')"></div>
           </div>
         </section>
 
-        <!-- M–σ Relation -->
-        <section id="msigma" class="tile dark">
+        <!-- AGN Feedback -->
+        <section id="feedback" class="tile dark">
           <div class="tile-wrap">
             <div class="tile-copy">
-              <span class="eyebrow-noup">M–σ RELATION</span>
-              <h2>Black-Hole Mass vs. Stellar Dispersion</h2>
+              <span class="eyebrow">GALAXY MORPHOLOGY</span>
+              <h2>AGN Feedback</h2>
+              <p>Unraveling the role of AGN activity (e.g., radiation, outflows, and jets) in regulating star formation in host galaxies.</p>
+              <ul class="bullets">
+                <li>Outflow kinematics and energetics from integral field spectroscopy.</li>
+                <li>Star formation in AGN host galaxies based on SED analysis.</li>
+                <li>AGN feedback in post-starburst galaxies or mergers.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill inv">IFU</span><span class="pill inv">UV/optical lines</span><span class="pill inv">Feedback</span>
+              </div>
+            </div>
+            <div class="tile-visual is-white" style="background-image:url('agn_jet.jpg')"></div>
+          </div>
+        </section>
+
+        <!-- AGN: Broad Line Region -->
+        <section id="blr" class="tile">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow-noup">ACTIVE GALACTIC NUCLEI</span>
+              <h2>Broad Line Region</h2>
+              <p>Gas region near the black hole that emits broad emission lines, located at only ~tens - hundreds of light-days away from the central black hole, responsible for broad emission lines with their high doppler velocity. Since they are photo-ionized by the radiation from the central black hole, they emit delayed radiation which reflects the variability of it </p>
+              <ul class="bullets">
+                <li>Continuum–line lag measurements</li>
+                <li>Velocity-delay maps and dynamical modeling.</li>
+                <li>Mass scale calibration and uncertainties.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill">Kinematics</span>
+                <span class="pill">Scaling Laws</span>
+              </div>
+            </div>
+            <div class="tile-visual is-white" style="background-image:url('agn_blr.jpg')"></div>
+          </div>
+        </section>
+
+        <!-- AGN: Changing Look AGN -->
+        <section id="clagn" class="tile">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow-noup">ACTIVE GALACTIC NUCLEI</span>
+              <h2>Changing-Look AGN</h2>
               <p>Calibrating the relation between SMBH mass and host velocity dispersion to trace co-evolution and selection biases.</p>
               <ul class="bullets">
                 <li>Stellar kinematics with IFU spectroscopy.</li>
@@ -298,40 +339,61 @@
                 <li>Cross-calibration with RM masses.</li>
               </ul>
               <div class="link-row" style="margin-top:12px">
-                <span class="pill inv">Kinematics</span>
-                <span class="pill inv">Scaling Laws</span>
+                <span class="pill">Kinematics</span>
+                <span class="pill">Scaling Laws</span>
               </div>
             </div>
-            <div class="tile-visual" style="background-image:url('supermassive-black-hole.webp')"></div>
+            <div class="tile-visual is-white" style="background-image:url('supermassive-black-hole.webp')"></div>
           </div>
         </section>
 
-        <!-- AGN Outflows -->
-        <section id="outflows" class="tile">
+        <!-- Cosmology -->
+        <section id="cosmology" class="tile dark">
           <div class="tile-wrap">
             <div class="tile-copy">
-              <span class="eyebrow">AGN Outflows</span>
-              <h2>Feedback and ISM Coupling</h2>
-              <p>Measuring wind energetics and multi-phase gas to quantify how AGN regulate star formation and galaxy evolution.</p>
+              <span class="eyebrow">GALAXY MORPHOLOGY</span>
+              <h2>Cosmology</h2>
+              <p>Black holes are small in size compared to galaxies, clusters, and the universe. Yet, AGNs are one of the most luminous objects in the universe, enabling us to use them as standard candles for cosmology. Furthermore, since host galaxies co-evolve with their central black holes, exploring distant (i.e. past) AGNs provides us crucial information about the evolution of galaxies in the early universe.</p>
               <ul class="bullets">
                 <li>Line diagnostics and photoionization modeling.</li>
                 <li>Spatially resolved IFU mapping of winds.</li>
                 <li>Momentum/energy-loading vs. luminosity.</li>
               </ul>
               <div class="link-row" style="margin-top:12px">
-                <span class="pill">IFU</span><span class="pill">UV/optical lines</span><span class="pill">Feedback</span>
+                <span class="pill inv">IFU</span><span class="pill inv">UV/optical lines</span><span class="pill inv">Feedback</span>
               </div>
             </div>
-            <div class="tile-visual is-white" style="background-image:url('pexels-dennisariel-31046021.jpg')"></div>
+            <div class="tile-visual is-white" style="background-image:url('science-cosmology-banner1.jpg')"></div>
           </div>
         </section>
 
-        <!-- AGN Redshift Measurement -->
-        <section id="redshift" class="tile dark">
+        <!-- AGN: Dust Torus -->
+        <section id="dust-torus" class="tile">
           <div class="tile-wrap">
             <div class="tile-copy">
-              <span class="eyebrow">Redshift</span>
-              <h2>Precise AGN Redshift Measurement</h2>
+              <span class="eyebrow-noup">ACTIVE GALACTIC NUCLEI</span>
+              <h2>Dust Torus</h2>
+              <p>Calibrating the relation between SMBH mass and host velocity dispersion to trace co-evolution and selection biases.</p>
+              <ul class="bullets">
+                <li>Understanding the co-evolution of AGN and galaxy.</li>
+                <li>Mapping the galaxy growth history.</li>
+                <li>Calibration of the size-luminosity relation for AGN as standard candle.</li>
+              </ul>
+              <div class="link-row" style="margin-top:12px">
+                <span class="pill">Kinematics</span>
+                <span class="pill">Scaling Laws</span>
+              </div>
+            </div>
+            <div class="tile-visual is-white" style="background-image:url('agn_dust_torus.jpg')"></div>
+          </div>
+        </section>
+
+        <!-- M–σ relation -->
+        <section id="msig-relation" class="tile dark">
+          <div class="tile-wrap">
+            <div class="tile-copy">
+              <span class="eyebrow">Galaxy Morphology</span>
+              <h2>M–σ relation</h2>
               <p>Robust redshift estimation from emission/absorption features and cross-correlation to enable precision demographics.</p>
               <ul class="bullets">
                 <li>Template fits and cross-correlation pipelines.</li>
@@ -342,89 +404,10 @@
                 <span class="pill inv">Spectroscopy</span><span class="pill inv">Pipelines</span>
               </div>
             </div>
-            <div class="tile-visual" style="background-image:url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=1600&auto=format&fit=crop')"></div>
+            <div class="tile-visual" style="background-image:url('spiral_galaxy_ngc_3982.webp')"></div>
           </div>
         </section>
 
-        <!-- BLR -->
-        <section id="blr" class="tile">
-          <div class="tile-wrap">
-            <div class="tile-copy">
-              <span class="eyebrow">BLR</span>
-              <h2>Broad-Line Region Geometry & Dynamics</h2>
-              <p>Gas region near the black hole that emits broad emission lines, located at only ~tens - hundreds of light-days away from the central black hole, responsible for broad emission lines with their high doppler velocity. Since they are photo-ionized by the radiation from the central black hole, they emit delayed radiation which reflects the variability of it </p>
-              <ul class="bullets">
-                <li>Continuum–line lag measurements</li>
-                <li>Velocity-delay maps and dynamical modeling.</li>
-                <li>Mass scale calibration and uncertainties.</li>
-              </ul>
-              <div class="link-row" style="margin-top:12px">
-                <span class="pill">RM</span><span class="pill">Dynamical Models</span>
-              </div>
-            </div>
-            <div class="tile-visual is-white" style="background-image:url('agn_blr.jpg')"></div>
-          </div>
-        </section>
-
-        <!-- Accretion Disk -->
-        <section id="disk" class="tile dark">
-          <div class="tile-wrap">
-            <div class="tile-copy">
-              <span class="eyebrow">Accretion Disk</span>
-              <h2>Sizes, Temperatures, and Lags</h2>
-              <p>Multi-band continuum RM and SED modeling to probe temperature profiles and size–luminosity relations.</p>
-              <ul class="bullets">
-                <li>Wavelength-dependent lags and disk tomography.</li>
-                <li>Microlensing & RM synergy; dust contamination.</li>
-                <li>Population trends with mass and Eddington ratio.</li>
-              </ul>
-              <div class="link-row" style="margin-top:12px">
-                <span class="pill inv">Continuum RM</span><span class="pill inv">SEDs</span>
-              </div>
-            </div>
-            <div class="tile-visual" style="background-image:url('agn_accretion_disk.jpg')"></div>
-          </div>
-        </section>
-
-        <!-- Changing-Look AGN -->
-        <section id="clagn" class="tile">
-          <div class="tile-wrap">
-            <div class="tile-copy">
-              <span class="eyebrow">Changing-Look AGN</span>
-              <h2>Transitions in Real Time</h2>
-              <p>Discovering and characterizing CL AGN to understand rapid accretion-state changes and line-emitting region response.</p>
-              <ul class="bullets">
-                <li>Time-domain selection from light curves and spectra.</li>
-                <li>Spectral state transitions; line appearance/disappearance.</li>
-                <li>Implications for accretion physics and unification.</li>
-              </ul>
-              <div class="link-row" style="margin-top:12px">
-                <span class="pill">Time-Domain</span><span class="pill">Spectroscopy</span>
-              </div>
-            </div>
-            <div class="tile-visual is-white" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop')"></div>
-          </div>
-        </section>
-
-        <!-- AGN Cosmology -->
-        <section id="cosmology" class="tile">
-          <div class="tile-wrap">
-            <div class="tile-copy">
-              <span class="eyebrow">AGN Cosmology</span>
-              <h2>Black Holes Extended Towards the Cosmos</h2>
-              <p>Black holes are small in size compared to galaxies, clusters, and the universe. Yet, AGNs are one of the most luminous objects in the universe, enabling us to use them as standard candles for cosmology. Furthermore, since host galaxies co-evolve with their central black holes, exploring distant (i.e. past) AGNs provides us crucial information about the evolution of galaxies in the early universe.</p>
-              <ul class="bullets">
-                <li>Understanding the co-evolution of AGN and galaxy.</li>
-                <li>Mapping the galaxy growth history.</li>
-                <li>Calibration of the size-luminosity relation for AGN as standard candle.</li>
-              </ul>
-              <div class="link-row" style="margin-top:12px">
-                <span class="pill">Time-Domain</span><span class="pill">Spectroscopy</span>
-              </div>
-            </div>
-            <div class="tile-visual is-white" style="background-image:url('science-cosmology-banner1.jpg')"></div>
-          </div>
-        </section>
       </div>
 
       <div class="back-row">
