@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="SNU AGN & Galaxy — Research areas: galaxy morphology, M–σ relation, AGN outflows, redshift measurement, BLR, accretion disks, and changing-look AGN.">
   <meta name="theme-color" content="#0a84ff">
-  <title>SNU AGN & Galaxy — Research</title>
+  <title>SNU ECHOS — Research</title>
   <link rel="icon" type="image/favicon" href="favicon.ico">
   <style>
     /* =====================================================
@@ -132,8 +132,34 @@
     .tile h2{ font-size: var(--step-2); line-height:1.12; margin: 10px 0 12px }
     .tile p{ color: var(--ink-weak); margin:0 0 14px }
     .tile.dark p{ color: var(--ink-inv-weak) }
-    .tile-visual{ min-height: 360px; background-size: cover; background-position:center; }
+
+    /* ===== Visuals with info/popover captions ===== */
+    /* Remove default <figure> margins used by browsers */
+    .tile-visual { 
+      margin: 0;                /* was default 1em 40px */
+      min-height: 360px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
     .tile-visual.is-white{ background-color:#f4f7fa }
+
+    .cap-btn{
+      position:absolute; right:.6rem; bottom:.6rem;
+      width:32px; height:32px; border:0; border-radius:999px; cursor:pointer;
+      background: rgba(0,0,0,.6); color:#fff; display:grid; place-items:center;
+      font-weight:700; line-height:1; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+    .tile.dark .cap-btn{ background: rgba(255,255,255,.25); color:#fff }
+    .cap-btn:hover, .cap-btn:focus{ outline:2px solid rgba(255,255,255,.6) }
+
+    dialog.cap-pop{ max-width:min(480px, 92vw); border:1px solid var(--hairline-strong); border-radius:12px; padding:16px; }
+    dialog.cap-pop::backdrop{ background: rgba(0,0,0,.35) }
+    .cap-pop .cap-title{ font-weight:700; margin:0 0 6px; }
+    .cap-pop .cap-meta{ margin:0 0 10px; color: var(--ink-weak) }
+    .cap-pop a{ color: var(--blue); text-decoration: underline }
+    .cap-pop form{ display:flex; justify-content:flex-end }
 
     .pill{ display:inline-block; padding:6px 12px; border-radius:999px; border:1px solid var(--hairline); background:#fff; color:#2b2f35; font-weight:700; font-size: var(--step--1) }
     .pill.inv{ background: transparent; color: var(--ink-inv); border-color: rgba(255,255,255,.22) }
@@ -281,7 +307,19 @@
                 <span class="pill">Machine Vision</span>
               </div>
             </div>
-            <div class="tile-visual is-white" style="background-image:url('agn_accretion_disk.jpg')"></div>
+            <figure class="tile-visual is-white" style="background-image:url('img/research_accretion_disk.jpg')" aria-label="Accretion disk illustration">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-accretion" aria-label="Image credit: Accretion Disks">ⓘ</button>
+              <dialog id="cap-accretion" class="cap-pop">
+                <p class="cap-title">Artist’s impression of NGC 3147 black hole disc</p>
+                <p class="cap-meta">
+                  ESA/Hubble, M. Kornmesser —
+                  <a href="https://sci.esa.int/web/hubble/-/61447-artist-impression-of-ngc3147-black-hole-disc">Source</a> —
+                  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+                  <em>Changes:</em> none
+                </p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
           </div>
         </section>
 
@@ -301,7 +339,14 @@
                 <span class="pill inv">IFU</span><span class="pill inv">UV/optical lines</span><span class="pill inv">Feedback</span>
               </div>
             </div>
-            <div class="tile-visual is-white" style="background-image:url('agn_jet.jpg')"></div>
+            <figure class="tile-visual is-white" style="background-image:url('agn_jet.jpg')" aria-label="AGN jet rendering">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-feedback" aria-label="Image credit: AGN Feedback">ⓘ</button>
+              <dialog id="cap-feedback" class="cap-pop">
+                <p class="cap-title">[AGN jets — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
           </div>
         </section>
 
@@ -322,7 +367,14 @@
                 <span class="pill">Scaling Laws</span>
               </div>
             </div>
-            <div class="tile-visual is-white" style="background-image:url('agn_blr.jpg')"></div>
+            <figure class="tile-visual is-white" style="background-image:url('agn_blr.jpg')" aria-label="BLR concept illustration">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-blr" aria-label="Image credit: Broad Line Region">ⓘ</button>
+              <dialog id="cap-blr" class="cap-pop">
+                <p class="cap-title">[Broad Line Region — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
           </div>
         </section>
 
@@ -343,7 +395,14 @@
                 <span class="pill">Scaling Laws</span>
               </div>
             </div>
-            <div class="tile-visual is-white" style="background-image:url('supermassive-black-hole.webp')"></div>
+            <figure class="tile-visual is-white" style="background-image:url('supermassive-black-hole.webp')" aria-label="Changing-look AGN concept art">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-clagn" aria-label="Image credit: Changing-Look AGN">ⓘ</button>
+              <dialog id="cap-clagn" class="cap-pop">
+                <p class="cap-title">[Changing-Look AGN — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
           </div>
         </section>
 
@@ -363,7 +422,14 @@
                 <span class="pill inv">IFU</span><span class="pill inv">UV/optical lines</span><span class="pill inv">Feedback</span>
               </div>
             </div>
-            <div class="tile-visual is-white" style="background-image:url('science-cosmology-banner1.jpg')"></div>
+            <figure class="tile-visual is-white" style="background-image:url('science-cosmology-banner1.jpg')" aria-label="Cosmology banner">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-cosmology" aria-label="Image credit: Cosmology">ⓘ</button>
+              <dialog id="cap-cosmology" class="cap-pop">
+                <p class="cap-title">[Cosmology banner — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
           </div>
         </section>
 
@@ -383,7 +449,14 @@
                 <span class="pill">Scaling Laws</span>
               </div>
             </div>
-            <div class="tile-visual is-white" style="background-image:url('agn_dust_torus.jpg')"></div>
+            <figure class="tile-visual is-white" style="background-image:url('agn_dust_torus.jpg')" aria-label="Dust torus visualization">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-dust" aria-label="Image credit: Dust Torus">ⓘ</button>
+              <dialog id="cap-dust" class="cap-pop">
+                <p class="cap-title">[Dust Torus — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
           </div>
         </section>
 
@@ -403,7 +476,14 @@
                 <span class="pill inv">Spectroscopy</span><span class="pill inv">Pipelines</span>
               </div>
             </div>
-            <div class="tile-visual" style="background-image:url('spiral_galaxy_ngc_3982.webp')"></div>
+            <figure class="tile-visual" style="background-image:url('spiral_galaxy_ngc_3982.webp')" aria-label="Spiral galaxy NGC 3982">
+              <button class="cap-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="cap-msig" aria-label="Image credit: M–σ relation">ⓘ</button>
+              <dialog id="cap-msig" class="cap-pop">
+                <p class="cap-title">[NGC 3982 — title]</p>
+                <p class="cap-meta">Credit: [Creator / Institution] — <a href="#">Source</a> — <a href="#">License</a></p>
+                <form method="dialog"><button>Close</button></form>
+              </dialog>
+            </figure>
           </div>
         </section>
 
@@ -428,6 +508,20 @@
     (function(){
       var t = document.getElementById('nav-toggle'); if(!t) return;
       document.querySelectorAll('#primary-nav a').forEach(function(a){ a.addEventListener('click', function(){ t.checked = false; }); });
+    })();
+
+    // Info badge popovers
+    (function(){
+      document.querySelectorAll('.cap-btn').forEach(function(btn){
+        var id = btn.getAttribute('aria-controls');
+        var dlg = document.getElementById(id);
+        if(!dlg) return;
+        btn.addEventListener('click', function(){
+          if(!dlg.open){ dlg.showModal(); btn.setAttribute('aria-expanded','true'); }
+          else { dlg.close(); btn.setAttribute('aria-expanded','false'); }
+        });
+        dlg.addEventListener('close', function(){ btn.setAttribute('aria-expanded','false'); });
+      });
     })();
   </script>
 </body>
