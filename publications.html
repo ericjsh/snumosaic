@@ -146,9 +146,50 @@
 
     .back-row{ margin-top: var(--space-5); border-top:1px solid var(--hairline); padding-top: 18px; display:flex; justify-content: space-between; align-items:center; color: var(--ink-weak) ; font-size: 10pt;}
 
-    /* Footer */
-    .site-footer{ margin-top: var(--space-6); border-top:1px solid var(--hairline) }
-    .footer-inner{ padding: 22px 0; display:flex; align-items:center; justify-content:space-between; color: var(--ink-weak) }
+    /* ------------------ Footer (dark, centered, two rows) ------------------ */
+    .site-footer{
+      background: var(--bg-inv);
+      color: var(--ink-inv);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: var(--space-6);
+    }
+    /* MATCH THE WIDE WIDTH (like your .wide sections) */
+    .site-footer .footer-inner{
+      width: min(1320px, 94vw);        /* << widened from 1140px */
+      margin-inline: auto;
+      padding: 22px 0;
+      display: grid;
+      grid-template-rows: auto auto;   /* brand row + microfooter row */
+      row-gap: 16px;
+    }
+    /* Center the brand block itself */
+    .foot-brand{
+      display: flex;
+      justify-content: center;         /* centers the logo+text as a group */
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+    }
+    .foot-logo{ width: 90px; height: auto; display:block; }
+    .foot-brand-text address{ margin:6px 0; font-style: normal; color: var(--ink-inv-weak); }
+    .site-footer a{ color: var(--ink-inv); text-decoration: none; opacity: .95 }
+    .site-footer a:hover{ opacity: 1 }
+
+    /* Microfooter: full width, centered items */
+    .microfooter{
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 10px;
+      display: flex;
+      width: 100%;                     /* ensure it spans the footer width */
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--ink-inv-weak);
+      text-align: center;
+    }
+    @media (max-width: 680px){
+      .foot-logo{ width: 64px; }
+    }
     /* ORCID icon + author layout */
     .meta .author{ white-space:nowrap; margin-right:6px }
     .orcid-icon{
@@ -292,10 +333,28 @@
   </main>
 
   <!-- ====================== FOOTER ====================== -->
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
-      <span>© 2025 SNU ECHOS</span>
-      <span><a href="#">Back to top</a></span>
+
+      <!-- Foot brand: SNU logo + group identity -->
+      <div class="foot-brand">
+        <a class="foot-logo-link" href="https://www.snu.ac.kr/en" target="_blank" rel="noopener">
+          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
+        </a>
+        <div class="foot-brand-text">
+          <strong>SNU ECHOS</strong><br>
+          Research Group for Evolution of Central engine and Host Of SMBH
+          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
+        </div>
+      </div>
+
+      <!-- Microfooter: compact fine print -->
+      <div class="microfooter">
+        <small>© <span id="year"></span> SNU ECHOS</small>
+        <small>Images credited in-page via ⓘ popovers</small>
+        <small>Last updated: <time id="lastmod"></time></small>
+      </div>
+
     </div>
   </footer>
 

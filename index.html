@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="MOSAIC Research Group — Active galactic nuclei, galaxy co‑evolution, time‑domain surveys, and open pipelines.">
+  <meta name="description" content="MOSAIC Research Group — Active galactic nuclei, galaxy co-evolution, time-domain surveys, and open pipelines.">
   <meta name="theme-color" content="#0a84ff">
   <meta property="og:title" content="SNU ECHOS — Home">
   <meta property="og:description" content="Research on AGNs, galaxies, reverberation mapping, outflows, and cosmology at Seoul National University.">
@@ -14,9 +14,6 @@
   <style>
     /* =====================================================
        SNU AGN & Galaxy — Home (cleaned)
-       - Unified header/nav (matches Research & Projects)
-       - Info popover (ⓘ) for all images
-       - Removed redundant/duplicated styles
        ===================================================== */
 
     /* ------------------ Tokens ------------------ */
@@ -168,9 +165,50 @@
     .pub{ padding:5px 0; border-top:1px solid var(--hairline) } .pub:first-child{ border-top:0 }
     .pub strong{ color:var(--ink) } .tile.dark .pub strong{ color:var(--ink-inv) }
 
-    /* Footer */
-    .site-footer{ margin-top: var(--space-6); border-top:1px solid var(--hairline) }
-    .footer-inner{ padding:22px 0; display:flex; align-items:center; justify-content:space-between; color:var(--ink-weak) }
+    /* ------------------ Footer (dark, centered, two rows) ------------------ */
+    .site-footer{
+      background: var(--bg-inv);
+      color: var(--ink-inv);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: var(--space-6);
+    }
+    /* MATCH THE WIDE WIDTH (like your .wide sections) */
+    .site-footer .footer-inner{
+      width: min(1320px, 94vw);        /* << widened from 1140px */
+      margin-inline: auto;
+      padding: 22px 0;
+      display: grid;
+      grid-template-rows: auto auto;   /* brand row + microfooter row */
+      row-gap: 16px;
+    }
+    /* Center the brand block itself */
+    .foot-brand{
+      display: flex;
+      justify-content: center;         /* centers the logo+text as a group */
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+    }
+    .foot-logo{ width: 90px; height: auto; display:block; }
+    .foot-brand-text address{ margin:6px 0; font-style: normal; color: var(--ink-inv-weak); }
+    .site-footer a{ color: var(--ink-inv); text-decoration: none; opacity: .95 }
+    .site-footer a:hover{ opacity: 1 }
+
+    /* Microfooter: full width, centered items */
+    .microfooter{
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 10px;
+      display: flex;
+      width: 100%;                     /* ensure it spans the footer width */
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--ink-inv-weak);
+      text-align: center;
+    }
+    @media (max-width: 680px){
+      .foot-logo{ width: 64px; }
+    }
 
     /* Accessibility */
     .skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
@@ -278,7 +316,7 @@
             <div class="tile-copy">
               <span class="eyebrow">Projects</span>
               <h2>KAMP</h2>
-              <p>KMTNet AGN Monitoring Project: long‑baseline optical monitoring for reverberation mapping and disk tomography.</p>
+              <p>KMTNet AGN Monitoring Project: long-baseline optical monitoring for reverberation mapping and disk tomography.</p>
               <div class="link-row"><a class="link" href="projects.html#kamp">Learn more →</a></div>
             </div>
             <figure class="tile-visual is-white" aria-label="KAMP image" style="background-image:url('img/index_kmtnet.jpg')">
@@ -301,7 +339,7 @@
             <div class="tile-copy">
               <span class="eyebrow">Projects</span>
               <h2>SPHEREx & 7DT</h2>
-              <p>All‑sky spectra meet rapid cadence: dust/BLR lags, SEDs, and population studies with consistent pipelines.</p>
+              <p>All-sky spectra meet rapid cadence: dust/BLR lags, SEDs, and population studies with consistent pipelines.</p>
               <a class="link" href="projects.html#spherex">Learn more →</a>
             </div>
             <figure class="tile-visual" aria-label="SPHEREx and 7DT" style="background-image:url('img/index_projects_2.avif')">
@@ -325,7 +363,7 @@
         <div class="tile-wrap">
           <div class="tile-copy">
             <span class="eyebrow">People</span>
-            <h2>Professor, Post‑docs, Students, Interns.</h2>
+            <h2>Professor, Post-docs, Students, Interns.</h2>
             <p>We’re an open, collaborative team. Replace this copy with short intros and headshots for each member.</p>
             <div class="link-row"><a class="link" href="people.html">Meet the group →</a></div>
           </div>
@@ -407,15 +445,42 @@
   </main>
 
   <!-- ====================== FOOTER ====================== -->
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
-      <span>© 2025 SNU ECHOS</span>
-      <span><a href="#main">Back to top</a></span>
+
+      <!-- Foot brand: SNU logo + group identity -->
+      <div class="foot-brand">
+        <a class="foot-logo-link" href="https://www.snu.ac.kr/en" target="_blank" rel="noopener">
+          <img class="foot-logo" src="img/snu_logo.png" alt="Seoul National University logo">
+        </a>
+        <div class="foot-brand-text">
+          <strong>SNU ECHOS</strong><br>
+          Research Group for Evolution of Central engine and Host Of SMBH
+          <address>SNU Astronomy Program, Department of Physics and Astronomy</address>
+        </div>
+      </div>
+
+      <!-- Microfooter: compact fine print -->
+      <div class="microfooter">
+        <small>© <span id="year"></span> SNU ECHOS</small>
+        <small>Images credited in-page via ⓘ popovers</small>
+        <small>Last updated: <time id="lastmod"></time></small>
+      </div>
+
     </div>
   </footer>
 
   <script>
-    // Auto-close mobile menu when a nav link is tapped (matches other pages)
+    (function(){
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+      var lm = document.getElementById('lastmod');
+      if (lm) lm.textContent = new Date(document.lastModified).toISOString().slice(0,10);
+    })();
+  </script>
+
+  <script>
+    // Auto-close mobile menu when a nav link is tapped
     (function(){
       var t = document.getElementById('nav-toggle'); if(!t) return;
       document.querySelectorAll('#primary-nav a').forEach(function(a){
